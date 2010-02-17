@@ -1,0 +1,44 @@
+#===========================================
+# Author: Francis Varga
+# eMail: fv@varga-multimedia.com
+# Blog: flexbuddha.posterous.com
+#===========================================
+#
+# This is my .gitconfig file
+#
+# Did you have question ask me ;)...
+[core]
+	symlinks = false
+	autoCRLF = input
+
+[pack]
+	packSizeLimit = 2g
+
+[help]
+	format = html
+	
+[http]
+	sslCAinfo = /bin/curl-ca-bundle.crt
+
+[color]
+    diff = auto
+    branch = auto
+    status = auto
+
+[alias]
+    st = status
+    d = diff
+    ci = commit -v
+    cia = commit -v -a
+    ca = commit -a -m
+    co = checkout
+    cp = cherry-pick
+    l = log
+    ll = log -p
+    lt = log trunk..
+    llt = log -p trunk..
+    lm = log master..
+    llm = log -p master..
+    b = branch
+    pom = push origin master
+    ads = submodule add

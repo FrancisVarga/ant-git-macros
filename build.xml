@@ -1,0 +1,42 @@
+<project>
+	
+	<!--
+		Git Macros
+	-->
+	<macrodef name = "git">
+	    <attribute name = "command" />
+	    <attribute name = "dir" default = "" />
+	    <element name = "args" optional = "true" />
+	    <sequential>
+	        <echo message = "git @{command}" />
+	        <exec executable = "git" dir = "@{dir}">
+	            <arg value = "@{command}" />
+	            <args/>
+	        </exec>
+	    </sequential>
+	</macrodef>
+
+	<macrodef name = "git-clone-pull">
+	    <attribute name = "repository" />
+	    <attribute name = "dest" />
+	    <sequential>
+	        <git command = "clone">
+	            <args>
+	                <arg value = "@{repository}" />
+	                <arg value = "@{dest}" />
+	            </args>
+	        </git>
+	        <git command = "pull" dir = "@{dest}" />
+	    </sequential>
+	</macrodef>
+	
+	
+	<!-- 
+		User specific the global configuration properties.
+	-->
+	<property file="project.properties" />
+	<property file="log.properties" />
+	<property file="git.properties" />
+
+
+</project>
