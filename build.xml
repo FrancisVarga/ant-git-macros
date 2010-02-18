@@ -129,12 +129,9 @@
 
 	<target name="[General] Big Master Buddha Init :D">
 
-		<antcall target="[General] Init Project">
-		</antcall>
-		<antcall target="[Git] Add all files">
-		</antcall>
-		<antcall target="[Git] Commit all with message">
-		</antcall>
+		<antcall target="[General] Init Project" />
+		<antcall target="[Robotlegs] Init" />
+		<antcall target="[Git] Initial commit to GitHub"></antcall>
 
 	</target>
 
