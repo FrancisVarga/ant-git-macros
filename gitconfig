@@ -31,7 +31,7 @@
     ci = commit -v
     cia = commit -v -a
     ca = commit -a -m
-    co = checkout
+    co = checkout -b
     cp = cherry-pick
     l = log
     ll = log -p

@@ -71,6 +71,34 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="git-checkout">
+		<attribute name="branch" />
+		<sequential>
+			<git command="co">
+				<args>
+					<arg value="@{branch}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="git-merge-branch">
+		<attribute name="branchFrom" />
+		<attribute name="branchInTo" />
+		<sequential>
+			<git command="checkout">
+				<args>
+					<arg value="@{branchInTo}" />
+				</args>
+			</git>
+			<git command="merge">
+				<args>
+					<arg value="@{branchFrom}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="git-add">
 		<attribute name="file" />
 		<sequential>
@@ -82,10 +110,19 @@
 		</sequential>
 	</macrodef>
 
-	<macrodef name="git-commit">
-		<attribute name="message" />
+	<macrodef name="git-tag">
+		<attribute name="tagName" />
 		<sequential>
-			<git-commit-with-message message="@{message}" />
+			<git command="tag">
+				<args>
+					<arg value="@{tagName}" />
+				</args>
+			</git>
+			<git command="push">
+				<args>
+					<arg value="--tags" />
+				</args>
+			</git>
 		</sequential>
 	</macrodef>
 
@@ -103,6 +140,11 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="git-pull">
+		<sequential>
+			<git command="pull" />
+		</sequential>
+	</macrodef>
 
 	<!--
 		End Git Macros
@@ -139,12 +181,14 @@
 
 	</target>
 
-	<target name="[General] Big Master Buddha Init :D">
+	<target name="[General] Big Master LittleBuddha Init :D">
 
 		<antcall target="[General] Init Project" />
 		<antcall target="[Robotlegs] Init" />
-		<antcall target="[Git] Initial commit to GitHub">
-		</antcall>
+		<git-submodule-add repository="${AS3.coreLib}" destination="as3Core"/>
+		<git-submodule-add repository="${AS3.fcss}" destination="fcss"/>
+		<git-submodule-add repository="${AS3.httpRESTfulClient}" destination="restClient"/>
+		<antcall target="[Git] Initial commit to GitHub" />
 
 	</target>
 
@@ -180,4 +224,20 @@
 		<echo>Push to ${branch}</echo>
 		<git-push-to-branch remoterepositoryname="origin" branch="${branch}" />
 	</target>
+
+	<target name="[Git] Checkout Branch">
+		<input message="Branch Name" addproperty="branch" defaultvalue="NewBranch" />
+		<git-checkout branch="${branch}" />
+	</target>
+
+	<target name="[Git] Merge Branches">
+		<input message="From Branch" addproperty="fromBranch" />
+		<input message="Into Branch" addproperty="intoBranch" />
+		<git-merge-branch branchfrom="${fromBranch}" branchinto="${intoBranch}" />
+	</target>
+
+	<target name="[Git] Pull">
+		<git-pull/>
+	</target>
+
 </project>
