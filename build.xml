@@ -23,6 +23,17 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="git-add-remote">
+		<attribute name="repository" />
+		<sequential>
+			<git command="rem">
+				<args>
+					<arg value="@{repository}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="git-submodule-add">
 		<attribute name="repository" />
 		<attribute name="destination" />
@@ -104,13 +115,16 @@
 
 
 	</target>
-	
+
 	<target name="[General] Big Master Buddha Init :D">
-		
-		<antcall target="[General] Init Project"></antcall>
-		<antcall target="[Git] Add all files"></antcall>
-		<antcall target="[Git] Commit all with message"></antcall>
-	
+
+		<antcall target="[General] Init Project">
+		</antcall>
+		<antcall target="[Git] Add all files">
+		</antcall>
+		<antcall target="[Git] Commit all with message">
+		</antcall>
+
 	</target>
 
 	<target name="[Robotlegs] Init">
@@ -133,7 +147,7 @@
 
 	<target name="[Git] Initial commit to GitHub">
 		<git-add-all-and-commit message="initial commit" />
-		<git command="remote add origin ${git.repository}" />
+		<git-add-remote repository="${git.repository}"/>
 		<git command="pom" />
 	</target>
 

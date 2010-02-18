@@ -42,3 +42,4 @@
     b = branch
     pom = push origin master
     ads = submodule add
+    rem = remote add origin 
