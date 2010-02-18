@@ -140,6 +140,12 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="git-log">
+		<sequential>
+			<git command="log" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="git-pull">
 		<sequential>
 			<git command="pull" />
@@ -238,6 +244,15 @@
 
 	<target name="[Git] Pull">
 		<git-pull />
+	</target>
+	
+	<target name="[Git] Show log">
+		<git-log/>
+	</target>
+	
+	<target name="[Git] Tag">
+		<input message="Tag Name" addproperty="tagName" />
+		<git-tag tagname="${tagName}"/>
 	</target>
 
 </project>
