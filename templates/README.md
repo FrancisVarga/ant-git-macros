@@ -7,7 +7,7 @@ Year: @year@
 
 eMail: @eMail@
 
-Homepage: @homepage@
+Homepage: [@homepage@](@homepage@ "@homepage@")
 
 Twitter: @twitter@
 

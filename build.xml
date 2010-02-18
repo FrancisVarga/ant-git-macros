@@ -174,19 +174,19 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-		
+
 		<antcall target="[Git] Init Git" />
 		<antcall target="[Git] Add all files" />
-		
+
 	</target>
 
 	<target name="[General] Big Master LittleBuddha Init :D">
 
 		<antcall target="[General] Init Project" />
 		<antcall target="[Robotlegs] Init" />
-		<git-submodule-add repository="${AS3.coreLib}" destination="as3Core"/>
-		<git-submodule-add repository="${AS3.fcss}" destination="fcss"/>
-		<git-submodule-add repository="${AS3.httpRESTfulClient}" destination="restClient"/>
+		<git-submodule-add repository="${AS3.coreLib}" destination="as3Core" />
+		<git-submodule-add repository="${AS3.fcss}" destination="fcss" />
+		<git-submodule-add repository="${AS3.httpRESTfulClient}" destination="restClient" />
 		<antcall target="[Git] Initial commit to GitHub" />
 
 	</target>
@@ -235,7 +235,7 @@
 	</target>
 
 	<target name="[Git] Pull">
-		<git-pull/>
+		<git-pull />
 	</target>
 
 </project>
