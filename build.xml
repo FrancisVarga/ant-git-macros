@@ -172,7 +172,7 @@
 	<target name="[Git] Push to Branch">
 		<antcall target="[Git] Add all files" />
 		<antcall target="[Git] Commit all with message" />
-		<input message="Branch Name" addproperty="branch" defaultvalue="origin master" />
+		<input message="Branch Name" addproperty="branch" defaultvalue="master" />
 		<echo>Push to ${branch}</echo>
 		<git-push-to-branch branch="${branch}"/>
 	</target>
