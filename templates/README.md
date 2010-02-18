@@ -5,7 +5,7 @@ Author: @author@
 
 Year: @year@
 
-eMail: [@eMail@](mailto:@eMail@ "@eMail@")
+eMail: <@eMail@>
 
 Homepage: [@homepage@](@homepage@ "@homepage@")
 
