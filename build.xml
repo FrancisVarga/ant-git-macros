@@ -6,7 +6,6 @@
 	<property file="project.properties" />
 	<property file="gitRepros.properties" />
 
-
 	<!--
 		Start Git Macros
 	-->
@@ -142,7 +141,11 @@
 
 	<macrodef name="git-log">
 		<sequential>
-			<git command="log" />
+			<git command="log">
+				<args>
+					<arg value="--stat" />
+				</args>
+			</git>
 		</sequential>
 	</macrodef>
 
@@ -151,8 +154,8 @@
 		<sequential>
 			<git command="pull">
 				<args>
-					<arg value="@{fromBranch}"/>
-</args>
+					<arg value="@{fromBranch}" />
+				</args>
 			</git>
 		</sequential>
 	</macrodef>
@@ -259,6 +262,10 @@
 	<target name="[Git] Tag">
 		<input message="Tag Name" addproperty="tagName" />
 		<git-tag tagname="${tagName}" />
+	</target>
+	
+	<target name="[Git] Show Branches">
+		<git command="branch" />
 	</target>
 
 </project>
