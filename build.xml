@@ -26,6 +26,7 @@
 	<macrodef name="git-push-to-branch">
 		<attribute name="branch" />
 		<attribute name="remoteRepositoryName" />
+		
 		<sequential>
 			<git command="push">
 				<args>
