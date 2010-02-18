@@ -26,10 +26,8 @@
 	<macrodef name="git-push-to-branch">
 		<attribute name="branch" />
 		<sequential>
-			<git command="push">
-				<args>
-					<arg value="@{branch}" />
-				</args>
+			<git command="push @{branch}">
+
 			</git>
 		</sequential>
 	</macrodef>
