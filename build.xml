@@ -1,42 +1,113 @@
-<project>
-	
+<project name="Ant Build Script with Git Support">
+
 	<!--
 		Git Macros
 	-->
-	<macrodef name = "git">
-	    <attribute name = "command" />
-	    <attribute name = "dir" default = "" />
-	    <element name = "args" optional = "true" />
-	    <sequential>
-	        <echo message = "git @{command}" />
-	        <exec executable = "git" dir = "@{dir}">
-	            <arg value = "@{command}" />
-	            <args/>
-	        </exec>
-	    </sequential>
+	<macrodef name="git">
+		<attribute name="command" />
+		<attribute name="dir" default="" />
+		<element name="args" optional="true" />
+		<sequential>
+			<echo message="git @{command}" />
+			<exec executable="git" dir="@{dir}">
+				<arg value="@{command}" />
+				<args />
+			</exec>
+		</sequential>
 	</macrodef>
 
-	<macrodef name = "git-clone-pull">
-	    <attribute name = "repository" />
-	    <attribute name = "dest" />
-	    <sequential>
-	        <git command = "clone">
-	            <args>
-	                <arg value = "@{repository}" />
-	                <arg value = "@{dest}" />
-	            </args>
-	        </git>
-	        <git command = "pull" dir = "@{dest}" />
-	    </sequential>
+	<macrodef name="git-submodule-add">
+		<attribute name="repository" />
+		<attribute name="destination" />
+		<sequential>
+			<git command="ads">
+				<args>
+					<arg value="@{repository}" />
+					<arg value="${submodule.dir}/@{destination}" />
+				</args>
+			</git>
+		</sequential>
 	</macrodef>
-	
-	
+
+	<macrodef name="git-commit-with-message">
+		<attribute name="message" />
+		<sequential>
+			<git command="ca">
+				<args>
+					<arg value="@{message}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="git-add-all-and-commit">
+		<attribute name="message" />
+		<sequential>
+			<git command="add ." />
+			<git-commit-with-message message="@{message}" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="git-clone-pull">
+		<attribute name="repository" />
+		<attribute name="dest" />
+		<sequential>
+			<git command="clone">
+				<args>
+					<arg value="@{repository}" />
+					<arg value="@{dest}" />
+				</args>
+			</git>
+			<git command="pull" dir="@{dest}" />
+		</sequential>
+	</macrodef>
+
+
 	<!-- 
 		User specific the global configuration properties.
 	-->
 	<property file="project.properties" />
-	<property file="log.properties" />
 	<property file="git.properties" />
 
+	<target name="Init Project">
+		<copy file="${template.dir}/LICENSE.md" tofile="${project.root.dir}/LICENSE.md" overwrite="${overwrite.files}">
+			<filterchain>
+				<replacetokens>
+					<token key="author" value="${author.name}" />
+					<token key="year" value="${year}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
 
+		<copy file="${template.dir}/README.md" tofile="${project.root.dir}/README.md" overwrite="${overwrite.files}">
+			<filterchain>
+				<replacetokens>
+					<token key="projectName" value="${project.name}" />
+					<token key="author" value="${author.name}" />
+					<token key="year" value="${year}" />
+					<token key="eMail" value="${author.email}" />
+					<token key="homepage" value="${author.homepage}" />
+					<token key="twitter" value="${author.twitter}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+
+		<antcall target="Init Git" />
+		<antcall target="Add all files" />
+
+
+	</target>
+
+	<target name="Init Git">
+		<git command="init" />
+	</target>
+
+	<target name="Add all files">
+		<git command="add ." />
+	</target>
+
+	<target name="Commit all with message">
+		<input message="Type your message!" addproperty="commitMsg" />
+		<git-commit-with-message message="${commitMsg}"/>
+	</target>
 </project>
