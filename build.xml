@@ -1,7 +1,14 @@
 <project name="Ant Build Script with Git Support">
 
+	<!-- 
+		User specific the global configuration properties.
+	-->
+	<property file="project.properties" />
+	<property file="gitRepros.properties" />
+
+
 	<!--
-		Git Macros
+		Start Git Macros
 	-->
 	<macrodef name="git">
 		<attribute name="command" />
@@ -48,7 +55,7 @@
 		</sequential>
 	</macrodef>
 
-	<macrodef name="git-clone-pull">
+	<macrodef name="git-clone">
 		<attribute name="repository" />
 		<attribute name="dest" />
 		<sequential>
@@ -63,13 +70,11 @@
 	</macrodef>
 
 
-	<!-- 
-		User specific the global configuration properties.
+	<!--
+		End Git Macros
 	-->
-	<property file="project.properties" />
-	<property file="git.properties" />
 
-	<target name="Init Project">
+	<target name="[General] Init Project">
 		<copy file="${template.dir}/LICENSE.md" tofile="${project.root.dir}/LICENSE.md" overwrite="${overwrite.files}">
 			<filterchain>
 				<replacetokens>
@@ -78,6 +83,8 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
+
+		<copy file="${template.dir}/.gitignore" tofile="${project.root.dir}/.gitignore" overwrite="${overwrite.files}" />
 
 		<copy file="${template.dir}/README.md" tofile="${project.root.dir}/README.md" overwrite="${overwrite.files}">
 			<filterchain>
@@ -97,17 +104,45 @@
 
 
 	</target>
+	
+	<target name="[General] Big Master Buddha Init :D">
+		
+		<antcall target="[General] Init Project"></antcall>
+		<antcall target="[Git] Add all files"></antcall>
+		<antcall target="[Git] Commit all with message"></antcall>
+	
+	</target>
 
-	<target name="Init Git">
+	<target name="[Robotlegs] Init">
+		<git-submodule-add repository="${AS3.robotlegs}" destination="robo" />
+		<git-submodule-add repository="${AS3.swiftSuspenders}" destination="swift" />
+	</target>
+
+	<target name="[Git] Init Git">
 		<git command="init" />
 	</target>
 
-	<target name="Add all files">
+	<target name="[Git] Add all files">
 		<git command="add ." />
 	</target>
 
-	<target name="Commit all with message">
+	<target name="[Git] Commit all with message">
 		<input message="Type your message!" addproperty="commitMsg" />
-		<git-commit-with-message message="${commitMsg}"/>
+		<git-commit-with-message message="${commitMsg}" />
+	</target>
+
+	<target name="[Git] Initial commit to GitHub">
+		<git-add-all-and-commit message="initial commit" />
+		<git command="remote add origin ${git.repository}" />
+		<git command="pom" />
+	</target>
+
+	<target name="[Git] Push to Branch">
+		<antcall target="Add all files">
+		</antcall>
+		<antcall target="Commit all with message">
+		</antcall>
+		<input message="Branch Name" addproperty="branch" />
+		<git command="push" />
 	</target>
 </project>
