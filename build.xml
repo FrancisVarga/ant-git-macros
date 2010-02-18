@@ -58,10 +58,21 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="git-add">
+		<attribute name="file" />
+		<sequential>
+			<git command="add">
+				<args>
+					<arg value="@{file}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="git-add-all-and-commit">
 		<attribute name="message" />
 		<sequential>
-			<git command="add ." />
+			<git-add file="." />
 			<git-commit-with-message message="@{message}" />
 		</sequential>
 	</macrodef>
@@ -137,7 +148,7 @@
 	</target>
 
 	<target name="[Git] Add all files">
-		<git command="add ." />
+		<git-add file="."/>
 	</target>
 
 	<target name="[Git] Commit all with message">
@@ -147,7 +158,7 @@
 
 	<target name="[Git] Initial commit to GitHub">
 		<git-add-all-and-commit message="initial commit" />
-		<git-add-remote repository="${git.repository}"/>
+		<git-add-remote repository="${git.repository}" />
 		<git command="pom" />
 	</target>
 
@@ -156,7 +167,7 @@
 		</antcall>
 		<antcall target="Commit all with message">
 		</antcall>
-		<input message="Branch Name" addproperty="branch" />
+		<input message="Branch Name" addproperty="branch" defaultvalue="master" />
 		<git command="push" />
 	</target>
 </project>
