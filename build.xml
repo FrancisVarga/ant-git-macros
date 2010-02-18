@@ -263,9 +263,13 @@
 		<input message="Tag Name" addproperty="tagName" />
 		<git-tag tagname="${tagName}" />
 	</target>
-	
+
 	<target name="[Git] Show Branches">
 		<git command="branch" />
+	</target>
+
+	<target name="[Git] Show Status">
+		<git command="status" />
 	</target>
 
 </project>
