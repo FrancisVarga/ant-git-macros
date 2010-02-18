@@ -26,8 +26,10 @@
 	<macrodef name="git-push-to-branch">
 		<attribute name="branch" />
 		<sequential>
-			<git command="push @{branch}">
-				
+			<git command="push">
+				<args>
+					<arg value="@{branch}" />
+				</args>
 			</git>
 		</sequential>
 	</macrodef>
@@ -174,6 +176,6 @@
 		<antcall target="[Git] Commit all with message" />
 		<input message="Branch Name" addproperty="branch" defaultvalue="master" />
 		<echo>Push to ${branch}</echo>
-		<git-push-to-branch branch="${branch}"/>
+		<git-push-to-branch branch="${branch}" />
 	</target>
 </project>
