@@ -147,8 +147,13 @@
 	</macrodef>
 
 	<macrodef name="git-pull">
+		<attribute name="fromBranch" />
 		<sequential>
-			<git command="pull" />
+			<git command="pull">
+				<args>
+					<arg value="@{fromBranch}"/>
+</args>
+			</git>
 		</sequential>
 	</macrodef>
 
@@ -243,16 +248,17 @@
 	</target>
 
 	<target name="[Git] Pull">
-		<git-pull />
+		<input message="Pull From Branch" addproperty="fromBranch" />
+		<git-pull frombranch="${fromBranch}" />
 	</target>
-	
+
 	<target name="[Git] Show log">
-		<git-log/>
+		<git-log />
 	</target>
-	
+
 	<target name="[Git] Tag">
 		<input message="Tag Name" addproperty="tagName" />
-		<git-tag tagname="${tagName}"/>
+		<git-tag tagname="${tagName}" />
 	</target>
 
 </project>
