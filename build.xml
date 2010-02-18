@@ -11,6 +11,7 @@
 	-->
 	<macrodef name="git">
 		<attribute name="command" />
+		<attribute name="options" default="" />
 		<attribute name="dir" default="" />
 		<element name="args" optional="true" />
 		<sequential>
@@ -19,6 +20,19 @@
 				<arg value="@{command}" />
 				<args />
 			</exec>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="git-branch">
+		<attribute name="branch" />
+		<attribute name="options" />
+		<sequential>
+			<git command="branch">
+				<args>
+					<arg value="@{branch}" />
+					<arg value="@{options}" />
+				</args>
+			</git>
 		</sequential>
 	</macrodef>
 
@@ -272,4 +286,17 @@
 		<git command="status" />
 	</target>
 
+	<target name="[Git] Delete Branch">
+		<input message="Branch Name" addproperty="branch" />
+		<git-branch branch="${branch}" options="-d" />
+	</target>
+
+	<target name="[Git] Cleanup Repository">
+		<git command="gc" options="--prune" />
+	</target>
+	
+	<target name="[Git] Search">
+		<input message="Search" addproperty="search" />
+		<git command="grep" options="'${search}'"/>
+	</target>
 </project>
