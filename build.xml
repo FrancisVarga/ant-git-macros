@@ -160,10 +160,8 @@
 	</target>
 
 	<target name="[Git] Push to Branch">
-		<antcall target="Add all files">
-		</antcall>
-		<antcall target="Commit all with message">
-		</antcall>
+		<antcall target="[Git] Add all files" />
+		<antcall target="[Git] Commit all with message" />
 		<input message="Branch Name" addproperty="branch" defaultvalue="master" />
 		<git command="push" />
 	</target>
