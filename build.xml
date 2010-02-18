@@ -174,11 +174,10 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-
-		<antcall target="Init Git" />
-		<antcall target="Add all files" />
-
-
+		
+		<antcall target="[Git] Init Git" />
+		<antcall target="[Git] Add all files" />
+		
 	</target>
 
 	<target name="[General] Big Master LittleBuddha Init :D">
@@ -221,7 +220,6 @@
 		<antcall target="[Git] Add all files" />
 		<antcall target="[Git] Commit all with message" />
 		<input message="Branch Name" addproperty="branch" defaultvalue="master" />
-		<echo>Push to ${branch}</echo>
 		<git-push-to-branch remoterepositoryname="origin" branch="${branch}" />
 	</target>
 
