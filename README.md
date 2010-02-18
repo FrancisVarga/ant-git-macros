@@ -5,10 +5,10 @@ Author: Francis Varga
 
 Year: 2010
 
-eMail: fv@varga-multimedia.com
+eMail: <fv@varga-multimedia.com>
 
-Homepage: [http://www.varga-multimedia.com](http://www.varga-multimedia.com "http://www.varga-multimedia.com")
+Homepage: <http://www.varga-multimedia.com>
 
-Twitter: @LittleBuddha87
+Twitter: <http://www.twitter.com/@LittleBuddha87>
 
 -------------------------

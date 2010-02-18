@@ -158,6 +158,9 @@
 					<token key="year" value="${year}" />
 				</replacetokens>
 			</filterchain>
+
+			<antcall target="[Git] Init Git" />
+			<antcall target="[Git] Add all files" />
 		</copy>
 
 		<copy file="${template.dir}/.gitignore" tofile="${project.root.dir}/.gitignore" overwrite="${overwrite.files}" />
@@ -175,8 +178,7 @@
 			</filterchain>
 		</copy>
 
-		<antcall target="[Git] Init Git" />
-		<antcall target="[Git] Add all files" />
+
 
 	</target>
 
