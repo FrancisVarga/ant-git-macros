@@ -29,6 +29,7 @@
 		<sequential>
 			<git command="push">
 				<args>
+					<arg value="-f" />
 					<arg value="@{remoteRepositoryName}" />
 					<arg value="@{branch}" />
 				</args>
