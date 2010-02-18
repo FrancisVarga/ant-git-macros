@@ -1,5 +1,4 @@
 #Ant Build Script
--------------------------
 
 Author: Francis Varga
 
@@ -11,7 +10,6 @@ Homepage: <http://www.varga-multimedia.com>
 
 Twitter: <http://www.twitter.com/@LittleBuddha87>
 
--------------------------
 
 #Instructions
 Hi Guys,
@@ -25,6 +23,6 @@ You find my gitconfig in this project!
 HowTo: <http://flexbuddha.posterous.com/how-to-change-git-alias-on-windows>
 4. if u want more git commands check this out: <http://github.com/guides/git-cheat-sheet>
 
-If you have questions ask me by Twitter or by eMail...
+If you have any questions ask me by Twitter or by eMail...
 
-Happy forking :)
+#Happy forking :)
