@@ -1,11 +1,14 @@
 <project name="Ant Build Script with Git Support">
 
 	<!-- 
-		User specific the global configuration properties.
+		Start user specific the global configuration properties.
 	-->
 	<property file="project.properties" />
 	<property file="gitRepros.properties" />
-
+	<!-- 
+		End user specific the global configuration properties.
+	-->
+	
 	<!--
 		Start Git Macros
 	-->
@@ -178,6 +181,9 @@
 		End Git Macros
 	-->
 
+	<!--
+		Start Tasks
+	-->
 	<target name="[General] Init Project">
 		<copy file="${template.dir}/LICENSE.md" tofile="${project.root.dir}/LICENSE.md" overwrite="${overwrite.files}">
 			<filterchain>
@@ -294,14 +300,25 @@
 	<target name="[Git] Cleanup Repository">
 		<git command="gc" options="--prune" />
 	</target>
-	
+
 	<target name="[Git] Search">
 		<input message="Search" addproperty="search" />
-		<git command="grep" options="'${search}'"/>
+		<git command="grep" options="'${search}'" />
 	</target>
-	
+
 	<target name="[Git] Show Diff">
-		<git command="diff"/>
+		<git command="diff" />
 	</target>
-	
+
+	<target name="[Git] Show Help of a Command">
+		<input message="Command for showing help" addproperty="helpCMD" />
+		<git command="help">
+			<args>
+				<arg value="${helpCMD}" />
+			</args>
+		</git>
+	</target>
+	<!--
+		End Tasks
+	-->
 </project>
