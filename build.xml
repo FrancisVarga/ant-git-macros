@@ -269,7 +269,7 @@
 		<git-pull frombranch="${fromBranch}" />
 	</target>
 
-	<target name="[Git] Show log">
+	<target name="[Git] Show Log">
 		<git-log />
 	</target>
 
@@ -299,4 +299,9 @@
 		<input message="Search" addproperty="search" />
 		<git command="grep" options="'${search}'"/>
 	</target>
+	
+	<target name="[Git] Show Diff">
+		<git command="diff"/>
+	</target>
+	
 </project>
