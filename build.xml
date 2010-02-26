@@ -8,7 +8,7 @@
 	<!-- 
 		End user specific the global configuration properties.
 	-->
-	
+
 	<!--
 		Start Git Macros
 	-->
@@ -317,6 +317,18 @@
 				<arg value="${helpCMD}" />
 			</args>
 		</git>
+	</target>
+
+	<target name="[Git] Checkout Prject">
+		<git>
+			<args>
+				<arg value="${helpCMD}" />
+			</args>
+		</git>
+	</target>
+
+	<target name="[Git] Checkout Project">
+		<git-clone repository="${git.repository}" dest="."/>
 	</target>
 	<!--
 		End Tasks

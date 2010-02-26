@@ -7,6 +7,10 @@
 # This is my .gitconfig file
 #
 # Did you have question ask me ;)...
+[user]
+	name = FrancisVarga
+	email = github@varga-net.com
+
 [core]
 	symlinks = false
 	autoCRLF = input
