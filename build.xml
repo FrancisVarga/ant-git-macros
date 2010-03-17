@@ -213,15 +213,11 @@
 		</copy>
 	</target>
 
-	<target name="[General] Big Master LittleBuddha Init :D">
-
-		<antcall target="[General] Init Project" />
-		<antcall target="[Robotlegs] Init" />
+	<target name="[General] Big Master LittleBuddha Init :D" depends="[General] Init Project, [Robotlegs] Init">
 		<git-submodule-add repository="${AS3.coreLib}" destination="as3Core" />
 		<git-submodule-add repository="${AS3.fcss}" destination="fcss" />
 		<git-submodule-add repository="${AS3.httpRESTfulClient}" destination="restClient" />
 		<antcall target="[Git] Initial commit to GitHub" />
-
 	</target>
 
 	<target name="[Robotlegs] Init">
@@ -242,16 +238,12 @@
 		<git-commit-with-message message="${commitMsg}" />
 	</target>
 
-	<target name="[Git] Initial commit to GitHub">
-		<antcall target="[Git] Add all files">
-		</antcall>
+	<target name="[Git] Initial commit to GitHub" depends="[Git] Add all files">
 		<git-add-remote repository="${git.repository}" />
 		<git command="pom" />
 	</target>
 
-	<target name="[Git] Push to Branch">
-		<antcall target="[Git] Add all files" />
-		<antcall target="[Git] Commit all with message" />
+	<target name="[Git] Push to Branch" depends="[Git] Add all files, [Git] Commit all with message">
 		<input message="Branch Name" addproperty="branch" defaultvalue="master" />
 		<git-push-to-branch remoterepositoryname="origin" branch="${branch}" />
 	</target>
@@ -314,18 +306,6 @@
 				<arg value="${helpCMD}" />
 			</args>
 		</git>
-	</target>
-
-	<target name="[Git] Checkout Prject">
-		<git>
-			<args>
-				<arg value="${helpCMD}" />
-			</args>
-		</git>
-	</target>
-
-	<target name="[Git] Checkout Project">
-		<git-clone repository="${git.repository}" dest="."/>
 	</target>
 	<!--
 		End Tasks
