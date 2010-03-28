@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="FDT HTML Template" default="replace template variables">
+    <description>
+            This build file copies the html template files into your project output folder and applies the proper values. 
+    </description>
+	
+	<property file="${basedir}/template-build.properties"/>
+
+    <target name="replace template variables" depends="copy template files">
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${title}" value="${htmlTitle}"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${bgcolor}" value="${backgroundColor}"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${useBrowserHistory}" value="--"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${version_major}.$${version_minor}.$${version_revision}" value="${requiredFlashPlayerVersion}"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${expressInstallSwf}" value="playerProductInstall.swf"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${application}" value="${mainSWFName}"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${swf}" value="${mainSWFName}"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${width}" value="${width}"/>
+    	<replace file="${basedir}/../${outputDir}/${mainSWFName}.html" token="$${height}" value="${height}"/>
+    </target>
+	
+    <target name="copy template files">
+    	<echo>${basedir}</echo>
+    	<copy overwrite="true" todir="${basedir}/../${outputDir}">
+    		<fileset dir="${basedir}">
+    			<exclude name="template-build.xml"/>
+    			<exclude name="template-build.properties"/>
+    			<exclude name="index.template.html"/>
+			</fileset>
+    	</copy>
+    	
+    	<copy overwrite="true"
+    		file="${basedir}/index.template.html"
+    		tofile="${basedir}/../${outputDir}/${mainSWFName}.html"
+    		>
+    	</copy>
+    </target>
+	
+</project>
