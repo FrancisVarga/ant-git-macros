@@ -178,6 +178,19 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="git-fetch">
+		<attribute name="remote" />
+		<attribute name="dir" />
+		<sequential>
+			<git command="fetch" dir="@{dir}">
+				<args>
+					<arg value="@{remote}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+
+
 	<macrodef name="git-pull">
 		<attribute name="fromBranch" />
 		<attribute dir="dir" />
