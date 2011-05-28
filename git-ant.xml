@@ -93,11 +93,13 @@
 
 	<macrodef name="git-checkout">
 		<attribute name="branch" />
+		<attribute name="targetbranch" />
 		<attribute name="dir" />
 		<sequential>
 			<git command="co" dir="@dir">
 				<args>
 					<arg value="@{branch}" />
+					<arg value="-b@{targetbranch}" />
 				</args>
 			</git>
 		</sequential>
