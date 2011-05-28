@@ -42,8 +42,9 @@
 	<macrodef name="git-push-to-branch">
 		<attribute name="branch" />
 		<attribute name="remoteRepositoryName" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="push">
+			<git command="push" dir="@dir">
 				<args>
 					<arg value="@{remoteRepositoryName}" />
 					<arg value="@{branch}" />
@@ -54,8 +55,9 @@
 
 	<macrodef name="git-add-remote">
 		<attribute name="repository" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="rem">
+			<git command="rem" dir="@dir">
 				<args>
 					<arg value="@{repository}" />
 				</args>
@@ -66,8 +68,9 @@
 	<macrodef name="git-submodule-add">
 		<attribute name="repository" />
 		<attribute name="destination" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="ads">
+			<git command="ads" dir="@dir">
 				<args>
 					<arg value="@{repository}" />
 					<arg value="${submodule.dir}/@{destination}" />
@@ -78,8 +81,9 @@
 
 	<macrodef name="git-commit-with-message">
 		<attribute name="message" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="ca">
+			<git command="ca" dir="@dir">
 				<args>
 					<arg value="@{message}" />
 				</args>
@@ -89,8 +93,9 @@
 
 	<macrodef name="git-checkout">
 		<attribute name="branch" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="co">
+			<git command="co" dir="@dir">
 				<args>
 					<arg value="@{branch}" />
 				</args>
@@ -101,13 +106,14 @@
 	<macrodef name="git-merge-branch">
 		<attribute name="branchFrom" />
 		<attribute name="branchInTo" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="checkout">
+			<git command="checkout" dir="@dir">
 				<args>
 					<arg value="@{branchInTo}" />
 				</args>
 			</git>
-			<git command="merge">
+			<git command="merge" dir="@dir">
 				<args>
 					<arg value="@{branchFrom}" />
 				</args>
@@ -117,8 +123,9 @@
 
 	<macrodef name="git-add">
 		<attribute name="file" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="add">
+			<git command="add" dir="@dir">
 				<args>
 					<arg value="@{file}" />
 				</args>
@@ -128,13 +135,14 @@
 
 	<macrodef name="git-tag">
 		<attribute name="tagName" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="tag">
+			<git command="tag" dir="@dir">
 				<args>
 					<arg value="@{tagName}" />
 				</args>
 			</git>
-			<git command="push">
+			<git command="push" dir="@dir">
 				<args>
 					<arg value="--tags" />
 				</args>
@@ -145,8 +153,9 @@
 	<macrodef name="git-clone">
 		<attribute name="repository" />
 		<attribute name="dest" />
+		<attribute name="dir" />
 		<sequential>
-			<git command="clone">
+			<git command="clone" dir="@dir">
 				<args>
 					<arg value="@{repository}" />
 					<arg value="@{dest}" />
@@ -157,8 +166,9 @@
 	</macrodef>
 
 	<macrodef name="git-log">
+		<attribute name="dir" />
 		<sequential>
-			<git command="log">
+			<git command="log" dir="@dir">
 				<args>
 					<arg value="--stat" />
 				</args>
@@ -168,8 +178,9 @@
 
 	<macrodef name="git-pull">
 		<attribute name="fromBranch" />
+		<attribute dir="dir" />
 		<sequential>
-			<git command="pull">
+			<git command="pull" dir="@dir">
 				<args>
 					<arg value="@{fromBranch}" />
 				</args>
