@@ -193,7 +193,7 @@
 
 	<macrodef name="git-pull">
 		<attribute name="fromBranch" />
-		<attribute dir="dir" />
+		<attribute name="dir" />
 		<sequential>
 			<git command="pull" dir="@{dir}">
 				<args>
