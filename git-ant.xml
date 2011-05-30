@@ -44,7 +44,7 @@
 		<attribute name="remoteRepositoryName" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="push" dir="@dir">
+			<git command="push" dir="@{dir}">
 				<args>
 					<arg value="@{remoteRepositoryName}" />
 					<arg value="@{branch}" />
@@ -57,7 +57,7 @@
 		<attribute name="repository" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="rem" dir="@dir">
+			<git command="rem" dir="@{dir}">
 				<args>
 					<arg value="@{repository}" />
 				</args>
@@ -70,7 +70,7 @@
 		<attribute name="destination" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="ads" dir="@dir">
+			<git command="ads" dir="@{dir}">
 				<args>
 					<arg value="@{repository}" />
 					<arg value="${submodule.dir}/@{destination}" />
@@ -83,7 +83,7 @@
 		<attribute name="message" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="ca" dir="@dir">
+			<git command="ca" dir="@{dir}">
 				<args>
 					<arg value="@{message}" />
 				</args>
@@ -96,7 +96,7 @@
 		<attribute name="targetbranch" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="co" dir="@dir">
+			<git command="co" dir="@{dir}">
 				<args>
 					<arg value="@{branch}" />
 					<arg value="-b@{targetbranch}" />
@@ -110,12 +110,12 @@
 		<attribute name="branchInTo" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="checkout" dir="@dir">
+			<git command="checkout" dir="@{dir}">
 				<args>
 					<arg value="@{branchInTo}" />
 				</args>
 			</git>
-			<git command="merge" dir="@dir">
+			<git command="merge" dir="@{dir}">
 				<args>
 					<arg value="@{branchFrom}" />
 				</args>
@@ -127,7 +127,7 @@
 		<attribute name="file" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="add" dir="@dir">
+			<git command="add" dir="@{dir}">
 				<args>
 					<arg value="@{file}" />
 				</args>
@@ -139,12 +139,12 @@
 		<attribute name="tagName" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="tag" dir="@dir">
+			<git command="tag" dir="@{dir}">
 				<args>
 					<arg value="@{tagName}" />
 				</args>
 			</git>
-			<git command="push" dir="@dir">
+			<git command="push" dir="@{dir}">
 				<args>
 					<arg value="--tags" />
 				</args>
@@ -157,7 +157,7 @@
 		<attribute name="dest" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="clone" dir="@dir">
+			<git command="clone" dir="@{dir}">
 				<args>
 					<arg value="@{repository}" />
 					<arg value="@{dest}" />
@@ -170,7 +170,7 @@
 	<macrodef name="git-log">
 		<attribute name="dir" />
 		<sequential>
-			<git command="log" dir="@dir">
+			<git command="log" dir="@{dir}">
 				<args>
 					<arg value="--stat" />
 				</args>
@@ -195,7 +195,7 @@
 		<attribute name="fromBranch" />
 		<attribute dir="dir" />
 		<sequential>
-			<git command="pull" dir="@dir">
+			<git command="pull" dir="@{dir}">
 				<args>
 					<arg value="@{fromBranch}" />
 				</args>
