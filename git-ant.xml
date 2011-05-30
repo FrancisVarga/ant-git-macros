@@ -20,7 +20,7 @@
 		<sequential>
 			<echo message="git @{command}" />
 			<exec executable="git" dir="@{dir}">
-				<arg value="@{command}" />
+				<arg line="@{command} @{options}" />
 				<args />
 			</exec>
 		</sequential>
@@ -31,10 +31,9 @@
 		<attribute name="options" />
 		<attribute name="dir" />
 		<sequential>
-			<git command="branch">
+			<git command="branch" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{branch}" />
-					<arg value="@{options}" />
 				</args>
 			</git>
 		</sequential>
@@ -44,8 +43,9 @@
 		<attribute name="branch" />
 		<attribute name="remoteRepositoryName" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="push" dir="@{dir}">
+			<git command="push" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{remoteRepositoryName}" />
 					<arg value="@{branch}" />
@@ -57,8 +57,9 @@
 	<macrodef name="git-add-remote">
 		<attribute name="repository" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="rem" dir="@{dir}">
+			<git command="rem" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{repository}" />
 				</args>
@@ -70,8 +71,9 @@
 		<attribute name="repository" />
 		<attribute name="destination" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="ads" dir="@{dir}">
+			<git command="ads" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{repository}" />
 					<arg value="${submodule.dir}/@{destination}" />
@@ -83,8 +85,9 @@
 	<macrodef name="git-commit-with-message">
 		<attribute name="message" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="ca" dir="@{dir}">
+			<git command="ca" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{message}" />
 				</args>
@@ -96,8 +99,9 @@
 		<attribute name="branch" />
 		<attribute name="targetbranch" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="co" dir="@{dir}">
+			<git command="co" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{branch}" />
 					<arg value="-b@{targetbranch}" />
@@ -110,8 +114,9 @@
 		<attribute name="branchFrom" />
 		<attribute name="branchInTo" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="checkout" dir="@{dir}">
+			<git command="checkout" dir="@{dir}" options="@{options}" >
 				<args>
 					<arg value="@{branchInTo}" />
 				</args>
@@ -127,8 +132,9 @@
 	<macrodef name="git-add">
 		<attribute name="file" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="add" dir="@{dir}">
+			<git command="add" dir="@{dir}" options="@{options}" >
 				<args>
 					<arg value="@{file}" />
 				</args>
@@ -139,8 +145,9 @@
 	<macrodef name="git-tag">
 		<attribute name="tagName" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="tag" dir="@{dir}">
+			<git command="tag" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{tagName}" />
 				</args>
@@ -157,8 +164,9 @@
 		<attribute name="repository" />
 		<attribute name="dest" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="clone" dir="@{dir}">
+			<git command="clone" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{repository}" />
 					<arg value="@{dest}" />
@@ -170,8 +178,9 @@
 
 	<macrodef name="git-log">
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="log" dir="@{dir}">
+			<git command="log" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="--stat" />
 				</args>
@@ -182,8 +191,9 @@
 	<macrodef name="git-fetch">
 		<attribute name="remote" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="fetch" dir="@{dir}">
+			<git command="fetch" dir="@{dir}" options="@{options}" >
 				<args>
 					<arg value="@{remote}" />
 				</args>
@@ -195,8 +205,9 @@
 	<macrodef name="git-pull">
 		<attribute name="fromBranch" />
 		<attribute name="dir" />
+		<attribute name="options" />
 		<sequential>
-			<git command="pull" dir="@{dir}">
+			<git command="pull" dir="@{dir}" options="@{options}" >
 				<args>
 					<arg value="@{fromBranch}" />
 				</args>
