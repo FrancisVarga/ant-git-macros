@@ -29,6 +29,7 @@
 	<macrodef name="git-branch">
 		<attribute name="branch" />
 		<attribute name="options" />
+		<attribute name="dir" />
 		<sequential>
 			<git command="branch">
 				<args>
