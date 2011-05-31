@@ -18,6 +18,7 @@
 		<attribute name="dir" default="" />
 		<element name="args" optional="true" />
 		<sequential>
+			<echo message="git dir @{dir}" />
 			<echo message="git @{command}" />
 			<exec executable="git" dir="@{dir}">
 				<arg line="@{command} @{options}" />
