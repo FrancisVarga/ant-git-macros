@@ -204,13 +204,13 @@
 
 
 	<macrodef name="git-pull">
-		<attribute name="fromBranch" />
+		<attribute name="remote" />
 		<attribute name="dir" />
 		<attribute name="options" />
 		<sequential>
 			<git command="pull" dir="@{dir}" options="@{options}" >
 				<args>
-					<arg value="@{fromBranch}" />
+					<arg value="@{remote}" />
 				</args>
 			</git>
 		</sequential>
@@ -298,10 +298,10 @@
 		<git-merge-branch branchfrom="${fromBranch}" branchinto="${intoBranch}" />
 	</target>
 
-	<target name="[Git] Pull">
+	<!--target name="[Git] Pull">
 		<input message="Pull From Branch" addproperty="fromBranch" />
 		<git-pull frombranch="${fromBranch}" />
-	</target>
+	</target-->
 
 	<target name="[Git] Show Log">
 		<git-log />
