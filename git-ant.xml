@@ -102,7 +102,7 @@
 		<attribute name="dir" />
 		<attribute name="options" />
 		<sequential>
-			<git command="co" dir="@{dir}" options="@{options}">
+			<git command="checkout" dir="@{dir}" options="@{options}">
 				<args>
 					<arg value="@{branch}" />
 					<arg value="-b@{targetbranch}" />
