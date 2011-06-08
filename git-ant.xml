@@ -173,7 +173,6 @@
 					<arg value="@{dest}" />
 				</args>
 			</git>
-			<git command="pull" dir="@{dest}" />
 		</sequential>
 	</macrodef>
 
