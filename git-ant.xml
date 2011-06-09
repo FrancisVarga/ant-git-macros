@@ -106,6 +106,20 @@
 			</git>
 		</sequential>
 	</macrodef>
+	
+	<macrodef name="git-checkout-local">
+		<attribute name="branch" />
+		<attribute name="dir" />
+		<attribute name="options" default="" />
+		<sequential>
+			<git command="checkout" dir="@{dir}" options="@{options}">
+				<args>
+					<arg value="@{branch}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
+
 
 	<macrodef name="git-checkout">
 		<attribute name="branch" />
