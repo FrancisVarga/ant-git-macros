@@ -178,11 +178,6 @@
 					<arg value="@{tagName}" />
 				</args>
 			</git>
-			<git command="push" dir="@{dir}">
-				<args>
-					<arg value="--tags" />
-				</args>
-			</git>
 		</sequential>
 	</macrodef>
 
