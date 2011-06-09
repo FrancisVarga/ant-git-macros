@@ -99,9 +99,9 @@
 		<attribute name="dir" />
 		<attribute name="options" />
 		<sequential>
-			<git command="ca" dir="@{dir}" options="@{options}">
+			<git command="commit" dir="@{dir}" options="@{options}">
 				<args>
-					<arg value="@{message}" />
+					<arg value="-m @{message}" />
 				</args>
 			</git>
 		</sequential>
