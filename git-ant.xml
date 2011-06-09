@@ -39,7 +39,18 @@
 			</git>
 		</sequential>
 	</macrodef>
-
+	<macrodef name="git-push">
+		<attribute name="remote" default="origin"/>
+		<attribute name="dir" />
+		<attribute name="options" default=""/>
+		<sequential>
+			<git command="push" dir="@{dir}" options="@{options}">
+				<args>
+					<arg value="@{remote}" />
+				</args>
+			</git>
+		</sequential>
+	</macrodef>
 	<macrodef name="git-push-to-branch">
 		<attribute name="branch" />
 		<attribute name="remoteRepositoryName" />
