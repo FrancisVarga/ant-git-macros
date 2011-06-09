@@ -29,7 +29,7 @@
 
 	<macrodef name="git-branch">
 		<attribute name="branch" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<attribute name="dir" />
 		<sequential>
 			<git command="branch" dir="@{dir}" options="@{options}">
@@ -42,7 +42,7 @@
 	<macrodef name="git-push">
 		<attribute name="remote" default="origin"/>
 		<attribute name="dir" />
-		<attribute name="options" default=""/>
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="push" dir="@{dir}" options="@{options}">
 				<args>
@@ -55,7 +55,7 @@
 		<attribute name="branch" />
 		<attribute name="remoteRepositoryName" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="push" dir="@{dir}" options="@{options}">
 				<args>
@@ -69,7 +69,7 @@
 	<macrodef name="git-add-remote">
 		<attribute name="repository" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="rem" dir="@{dir}" options="@{options}">
 				<args>
@@ -83,7 +83,7 @@
 		<attribute name="repository" />
 		<attribute name="destination" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="ads" dir="@{dir}" options="@{options}">
 				<args>
@@ -97,7 +97,7 @@
 	<macrodef name="git-commit-with-message">
 		<attribute name="message" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="commit" dir="@{dir}" options="@{options}">
 				<args>
@@ -110,7 +110,7 @@
 	<macrodef name="git-checkout-local">
 		<attribute name="branch" />
 		<attribute name="dir" />
-		<attribute name="options" default="" />
+		<attribute name="options" default=""  />
 		<sequential>
 			<git command="checkout" dir="@{dir}" options="@{options}">
 				<args>
@@ -125,7 +125,7 @@
 		<attribute name="branch" />
 		<attribute name="targetbranch" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default=""  />
 		<sequential>
 			<git command="checkout" dir="@{dir}" options="@{options}">
 				<args>
@@ -140,7 +140,7 @@
 		<attribute name="branchFrom" />
 		<attribute name="branchInTo" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="checkout" dir="@{dir}"  >
 				<args>
@@ -158,7 +158,7 @@
 	<macrodef name="git-add">
 		<attribute name="file" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="add" dir="@{dir}" options="@{options}" >
 				<args>
@@ -171,7 +171,7 @@
 	<macrodef name="git-tag">
 		<attribute name="tagName" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="tag" dir="@{dir}" options="@{options}">
 				<args>
@@ -185,7 +185,7 @@
 		<attribute name="repository" />
 		<attribute name="dest" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="clone" dir="@{dir}" options="@{options}">
 				<args>
@@ -198,7 +198,7 @@
 
 	<macrodef name="git-log">
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="log" dir="@{dir}" options="@{options}">
 				<args>
@@ -211,7 +211,7 @@
 	<macrodef name="git-fetch">
 		<attribute name="remote" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="fetch" dir="@{dir}" options="@{options}" >
 				<args>
@@ -225,7 +225,7 @@
 	<macrodef name="git-pull">
 		<attribute name="remote" />
 		<attribute name="dir" />
-		<attribute name="options" />
+		<attribute name="options" default="" />
 		<sequential>
 			<git command="pull" dir="@{dir}" options="@{options}" >
 				<args>
