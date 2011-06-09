@@ -142,12 +142,12 @@
 		<attribute name="dir" />
 		<attribute name="options" />
 		<sequential>
-			<git command="checkout" dir="@{dir}" options="@{options}" >
+			<git command="checkout" dir="@{dir}"  >
 				<args>
 					<arg value="@{branchInTo}" />
 				</args>
 			</git>
-			<git command="merge" dir="@{dir}">
+			<git command="merge" dir="@{dir}" options="@{options}" >
 				<args>
 					<arg value="@{branchFrom}" />
 				</args>
