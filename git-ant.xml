@@ -20,7 +20,7 @@
 		<sequential>
 			<echo message="git dir @{dir}" />
 			<echo message="git @{command}" />
-			<exec executable="git" dir="@{dir}">
+			<exec executable="git" dir="@{dir}" failonerror="true">
 				<arg line="@{command} @{options}" />
 				<args />
 			</exec>
