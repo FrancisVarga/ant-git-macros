@@ -16,11 +16,12 @@
 		<attribute name="command" />
 		<attribute name="options" default="" />
 		<attribute name="dir" default="" />
+		<attribute name="failerror" default="false" />
 		<element name="args" optional="true" />
 		<sequential>
 			<echo message="git dir @{dir}" />
 			<echo message="git @{command}" />
-			<exec executable="git" dir="@{dir}" failonerror="true">
+			<exec executable="git" dir="@{dir}" failonerror="@{failerror}">
 				<arg line="@{command} @{options}" />
 				<args />
 			</exec>
@@ -31,8 +32,9 @@
 		<attribute name="branch" />
 		<attribute name="options" default="" />
 		<attribute name="dir" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="branch" dir="@{dir}" options="@{options}">
+			<git command="branch" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{branch}" />
 				</args>
@@ -43,21 +45,27 @@
 		<attribute name="remote" default="origin"/>
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="localRef" />
+		<attribute name="remoteRef" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="push" dir="@{dir}" options="@{options}">
+			<git command="push" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{remote}" />
+					<arg value="@{localRef}:@{remoteRef}" />
 				</args>
 			</git>
 		</sequential>
 	</macrodef>
+
 	<macrodef name="git-push-to-branch">
 		<attribute name="branch" />
 		<attribute name="remoteRepositoryName" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="push" dir="@{dir}" options="@{options}">
+			<git command="push" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{remoteRepositoryName}" />
 					<arg value="@{branch}" />
@@ -70,8 +78,9 @@
 		<attribute name="repository" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="rem" dir="@{dir}" options="@{options}">
+			<git command="rem" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{repository}" />
 				</args>
@@ -84,8 +93,9 @@
 		<attribute name="destination" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="ads" dir="@{dir}" options="@{options}">
+			<git command="ads" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{repository}" />
 					<arg value="${submodule.dir}/@{destination}" />
@@ -98,8 +108,9 @@
 		<attribute name="message" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="commit" dir="@{dir}" options="@{options}">
+			<git command="commit" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="-m @{message}" />
 				</args>
@@ -111,8 +122,9 @@
 		<attribute name="branch" />
 		<attribute name="dir" />
 		<attribute name="options" default=""  />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="checkout" dir="@{dir}" options="@{options}">
+			<git command="checkout" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{branch}" />
 				</args>
@@ -126,8 +138,9 @@
 		<attribute name="targetbranch" />
 		<attribute name="dir" />
 		<attribute name="options" default=""  />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="checkout" dir="@{dir}" options="@{options}">
+			<git command="checkout" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{branch}" />
 					<arg value="-b@{targetbranch}" />
@@ -141,8 +154,9 @@
 		<attribute name="branchInTo" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="checkout" dir="@{dir}"  >
+			<git command="checkout" dir="@{dir}"  failerror="@{failerror}" >
 				<args>
 					<arg value="@{branchInTo}" />
 				</args>
@@ -159,8 +173,9 @@
 		<attribute name="file" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="add" dir="@{dir}" options="@{options}" >
+			<git command="add" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{file}" />
 				</args>
@@ -172,8 +187,9 @@
 		<attribute name="tagName" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="tag" dir="@{dir}" options="@{options}">
+			<git command="tag" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{tagName}" />
 				</args>
@@ -186,8 +202,9 @@
 		<attribute name="dest" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="clone" dir="@{dir}" options="@{options}">
+			<git command="clone" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{repository}" />
 					<arg value="@{dest}" />
@@ -199,8 +216,9 @@
 	<macrodef name="git-log">
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="log" dir="@{dir}" options="@{options}">
+			<git command="log" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="--stat" />
 				</args>
@@ -212,8 +230,9 @@
 		<attribute name="remote" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="fetch" dir="@{dir}" options="@{options}" >
+			<git command="fetch" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{remote}" />
 				</args>
@@ -226,8 +245,9 @@
 		<attribute name="remote" />
 		<attribute name="dir" />
 		<attribute name="options" default="" />
+		<attribute name="failerror" default="false" />
 		<sequential>
-			<git command="pull" dir="@{dir}" options="@{options}" >
+			<git command="pull" dir="@{dir}" options="@{options}" failerror="@{failerror}" >
 				<args>
 					<arg value="@{remote}" />
 				</args>
