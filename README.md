@@ -28,3 +28,7 @@ HowTo: <http://varga-multimedia.com/2010/02/09/how-to-change-git-alias-on-window
 If you have any questions ask me by Twitter or by eMail...
 
 #Happy forking :)
+
+#Contributers
+
+Thx to ["snktagarwal" https://github.com/snktagarwal/ant-git-macros]
