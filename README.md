@@ -30,5 +30,4 @@ If you have any questions ask me by Twitter or by eMail...
 #Happy forking :)
 
 #Contributers
-
-Thx to ["snktagarwal" https://github.com/snktagarwal/ant-git-macros]
+Thx to [snktagarwal](https://github.com/snktagarwal/ant-git-macros)
