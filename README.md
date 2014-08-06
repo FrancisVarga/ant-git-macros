@@ -4,14 +4,6 @@ Author: Francis Varga
 
 Year: 2010
 
-eMail: <fv@varga-multimedia.com>
-
-Homepage: <http://www.varga-multimedia.com>
-
-Twitter: <http://www.twitter.com/@LittleBuddha87>
-
-![](http://ktown.kde.org/~zrusin/git/git-cheat-sheet-medium.png)
-
 
 #Instructions
 Hi Guys,
